@@ -357,7 +357,6 @@ public class SpeakerDetailsActivity extends BaseActivity implements AppBarLayout
                                 getResources().getString(R.string.message_3),
                                 Urls.getAppLink()
                                   );
-                Log.d("SHARE MESSAGE",message);
 
                 sendIntent.putExtra(Intent.EXTRA_TEXT, message);
                 sendIntent.setType("text/plain");
