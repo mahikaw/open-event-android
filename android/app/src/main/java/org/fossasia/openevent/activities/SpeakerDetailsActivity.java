@@ -25,6 +25,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -353,10 +354,11 @@ public class SpeakerDetailsActivity extends BaseActivity implements AppBarLayout
                         getResources().getString(R.string.app_name),
                         getResources().getString(R.string.message_2)) +
                         StringUtils.join(mSessions, ", ") +
-                        String.format("\n\n%s (%s)\n%s",
+                        String.format("\n\n%s (%s)\n",
                                 getResources().getString(R.string.message_3),
-                                Urls.getAppLink(),
-                                selectedSpeaker.getPhoto());
+                                Urls.getAppLink()
+                                  );
+                Log.d("SHARE MESSAGE",message);
 
                 sendIntent.putExtra(Intent.EXTRA_TEXT, message);
                 sendIntent.setType("text/plain");
