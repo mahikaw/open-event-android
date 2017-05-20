@@ -2,6 +2,8 @@
 
 ### Requirements
 
+ Operating system Ubuntu 14.04 or above is preferred. (This guide will be based on ubuntu/debian based operating systems.)
+ 
 - Python 2.7
 - Oracle JDK 8
 - Android SDK & necessary build tools and platform SDKs
