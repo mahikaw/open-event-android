@@ -50,66 +50,6 @@ export ANDROID_HOME="/opt/android-sdk-linux"
 export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 ```
 
-#### Installing Redis Server
-
-You can follow the [Redis Installation Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04) to install and activate Redis Server on your machine.
-
-### Installing the project requirements
-
-Let's go into the app generator's directory
-```bash
-cd ${PROJECT_DIR}/apk-generator/v2/
-```
-#### Installing python dependencies
-```bash
-sudo -H pip install -r requirements.txt
-```
-
-#### Creating a keystore
-
-```bash
-export KEY_ALIAS=debug
-export KEYSTORE_PASSWORD=debug
-export KEYSTORE_PATH=$(pwd)/keystore/debug.keystore
-```
-
-```bash
-keytool -genkey -noprompt \
- -alias ${KEY_ALIAS} \
- -dname "CN=localhost, OU=SG, O=SomeName, L=SomeCountry, S=SomeCountry, C=SG" \
- -keystore ${KEYSTORE_PATH} \
- -storepass ${KEYSTORE_PASSWORD} \
- -keypass ${KEYSTORE_PASSWORD} \
- -keyalg RSA \
- -keysize 2048 \
- -validity 10000
-```
-
-#### Starting the generator
-
-Set the appropriate config class to use as an environment variable
-```bash
-export APP_CONFIG=config.DevelopmentConfig # for a development environment
-export APP_CONFIG=config.ProductionConfig  # for a production environment
-export APP_CONFIG=config.TestingConfig     # for a testing environment
-```
-
-Set the URI to your redis instance as an environment variable
-```bash
-export REDIS_URL=redis://localhost:6379/0
-```
-
-##### Starting celery worker in the background
-```bash
-celery worker -A app.celery &
-```
-
-##### Starting the app generator web server
-```bash
-gunicorn -b 0.0.0.0:8080 app:app --enable-stdio-inheritance --log-level "info"
-```
-
-You can now visit [http://localhost:8080](http://localhost:8080/) on your browser to access the app generator.
  ### 2. OSX:
 
 
@@ -161,6 +101,8 @@ export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 #### Installing Redis Server
 
 You can follow the [Redis Installation Guide](https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298) to install and activate Redis Server on your machine.
+
+### COMMON INSTRUCTIONS FOR OSX/LINUX
 
 ### Installing the project requirements
 
