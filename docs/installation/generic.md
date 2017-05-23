@@ -94,10 +94,20 @@ You can follow this link (https://docs.oracle.com/javase/8/docs/technotes/guides
 sudo cp kubernetes/images/generator/tools /opt
 sudo ./kubernetes/images/generator/android.sh
 
-export ANDROID_HOME="/opt/android-sdk-linux"
-export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+export ANDROID_HOME={YOUR_PATH}
 ```
+If you downloaded the SDK through their website and then dragged/dropped the Application to your Applications folder, it's most likely here:
+/Applications/ADT/sdk.
 
+If you installed the SDK using Homebrew (brew install android-sdk), then it's located here:
+/usr/local/Cellar/android-sdk/{YOUR_SDK_VERSION_NUMBER}
+
+If the SDK was installed automatically as part of Android Studio then it's located here:
+/Users/{YOUR_USER_NAME}/Library/Android/sdk
+```
+export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+```
 #### Installing Redis Server
 
 You can follow the [Redis Installation Guide](https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298) to install and activate Redis Server on your machine.
@@ -153,7 +163,10 @@ export REDIS_URL=redis://localhost:6379/0
 ```bash
 celery worker -A app.celery &
 ```
-
+### Note: The '&' in the above command means detaching from the console. To avoid use the following command instead
+```bash
+celery worker -A app.celery --loglevel=INFO
+```
 ##### Starting the app generator web server
 ```bash
 gunicorn -b 0.0.0.0:8080 app:app --enable-stdio-inheritance --log-level "info"
@@ -161,3 +174,7 @@ gunicorn -b 0.0.0.0:8080 app:app --enable-stdio-inheritance --log-level "info"
 
 You can now visit [http://localhost:8080](http://localhost:8080/) on your browser to access the app generator.
 
+### A FEW PRECAUTIONS/TIPS:
+### Run Celery and Gunicorn command on different machines. 
+### Use of virtualenv is recommended.
+### Take care that the above environment variables are present at all times. You could also store them as permanent environment variables.
