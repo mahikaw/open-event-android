@@ -63,7 +63,7 @@ export PROJECT_DIR=$(pwd)
 
 #### Installing dependencies
 
-### Install brew
+#### Install brew
 ```bash
  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   xcode-select --install
@@ -170,7 +170,7 @@ export REDIS_URL=redis://localhost:6379/0
 ```bash
 celery worker -A app.celery &
 ```
-### Note: The '&' in the above command means detaching from the console. To avoid use the following command instead
+##### Note: The '&' in the above command means detaching from the console. To avoid use the following command instead
 ```bash
 celery worker -A app.celery --loglevel=INFO
 ```
@@ -181,7 +181,7 @@ gunicorn -b 0.0.0.0:8080 app:app --enable-stdio-inheritance --log-level "info"
 
 You can now visit [http://localhost:8080](http://localhost:8080/) on your browser to access the app generator.
 
-### A FEW PRECAUTIONS/TIPS:
-### Run Celery and Gunicorn command on different commandline windows. 
-### Use of virtualenv is recommended.
-### Take care that the above environment variables are present at all times. You could also store them as permanent environment variables.
+#### A FEW PRECAUTIONS/TIPS:
+##### - Run Celery and Gunicorn command on different commandline windows. 
+##### - Use of virtualenv is recommended.
+##### - Take care that the above environment variables are present at all times. You could also store them as permanent environment variables.
