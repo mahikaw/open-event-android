@@ -97,13 +97,20 @@ sudo ./kubernetes/images/generator/android.sh
 export ANDROID_HOME={YOUR_PATH}
 ```
 If you downloaded the SDK through their website and then dragged/dropped the Application to your Applications folder, it's most likely here:
-/Applications/ADT/sdk.
+
+```bash
+/Applications/ADT/sdk
+```
 
 If you installed the SDK using Homebrew (brew install android-sdk), then it's located here:
+```bash
 /usr/local/Cellar/android-sdk/{YOUR_SDK_VERSION_NUMBER}
+```
 
 If the SDK was installed automatically as part of Android Studio then it's located here:
+```bash
 /Users/{YOUR_USER_NAME}/Library/Android/sdk
+```
 ```
 export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
@@ -175,6 +182,6 @@ gunicorn -b 0.0.0.0:8080 app:app --enable-stdio-inheritance --log-level "info"
 You can now visit [http://localhost:8080](http://localhost:8080/) on your browser to access the app generator.
 
 ### A FEW PRECAUTIONS/TIPS:
-### Run Celery and Gunicorn command on different machines. 
+### Run Celery and Gunicorn command on different commandline windows. 
 ### Use of virtualenv is recommended.
 ### Take care that the above environment variables are present at all times. You could also store them as permanent environment variables.
